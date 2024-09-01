@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Question</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('https://source.unsplash.com/random/1600x900') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            text-align: center;
+        }
+        #container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        .emoji {
+            font-size: 2rem;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff6f61;
+            color: white;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background-color: #ff3f3f;
+        }
+        #noButton {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Can you make a gf for me in your frnds? <span class="emoji">🥺😔☹️</span></h1>
+        <button id="yesButton">Yes</button>
+        <button id="noButton">No</button>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        const maxShifts = 500;  // Maximum number of times the 'No' button will move
+
+        document.getElementById('yesButton').addEventListener('click', function() {
+            alert('Thank you, You are my best sister😘!');
+        });
+
+        document.getElementById('noButton').addEventListener('click', function() {
+            if (clickCount < maxShifts) {
+                shiftNoButton();
+                clickCount++;
+            }
+        });
+
+        function shiftNoButton() {
+            const noButton = document.getElementById('noButton');
+            const container = document.getElementById('container');
+            const maxX = window.innerWidth - noButton.offsetWidth;
+            const maxY = window.innerHeight - noButton.offsetHeight;
+            const randomPosition = () => {
+                return {
+                    x: Math.random() * maxX,
+                    y: Math.random() * maxY
+                };
+            };
+
+            function getRandomPosition() {
+                const { x, y } = randomPosition();
+                noButton.style.left = `${x}px`;
+                noButton.style.top = `${y}px`;
+            }
+
+            getRandomPosition();
+        }
+    </script>
+</body>
+</html>
